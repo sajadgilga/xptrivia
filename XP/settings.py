@@ -11,25 +11,42 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# TODO: SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '1(+89v5d#vrkc)9@jdka5rb5shkd(wa69zu9szi0xkevjp#o(-'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# TODO: SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+# admins which get error messages when DEBUG is set to false
+ADMINS = [('sajad', 'majidstic@yahoo.com'), ('mahdi', '')]
+
+# settings for caching
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#         'LOCATION': '/var/tmp/django_cache',
+#     }
+# }
+
+# A string containing a dotted path to a function (or any callable) that defines how to compose a prefix,
+# version and key into a final cache key.
+# KEY_FUNCTION : def make_key(key, key_prefix, version):
+#     return ':'.join([key_prefix, str(version), key])
+
+# A string that will be automatically included (prepended by default) to all cache keys used by the Django server.
+# KEY_PREFIX = ''
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -70,16 +87,28 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'XP.wsgi.application'
 
-
-# Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
+# database settings
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'XP_db',
+        'USER': 'xp_user',  # username of database
+        'PASSWORD': '1234',  # password of database
+        'HOST': '127.0.0.1',  # set to localhost or '127.0.0.1' for tcp connection
+        'PORT': '',
+        'CONN_MAX_AGE': 0, # if set to 'None' it will create persistent connection with db
     }
 }
+
+# maximum request body before raising exception
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5221440
+
+# default email address for automated email response
+# DEFAULT_FROM_EMAIL = 'webmaster@localhost'
+
+# the backend to use for sending emails
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 # Password validation
@@ -100,20 +129,23 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa-IR'
 
-TIME_ZONE = 'UTC'
+LANGUAGES = [
+    ('en', _('English')),
+    ('fa-IR', _('Farsi')),
+]
+
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
