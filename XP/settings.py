@@ -54,9 +54,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'XP.authentication',
-    'XP.game',
-    'XP.maingame',
+    'authentication',
+    'game',
+    'maingame',
 ]
 
 MIDDLEWARE = [
@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'XP.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'XP_db',
+        'NAME': 'xp_db',
         'USER': 'xp_user',  # username of database
         'PASSWORD': '1234',  # password of database
         'HOST': '127.0.0.1',  # set to localhost or '127.0.0.1' for tcp connection

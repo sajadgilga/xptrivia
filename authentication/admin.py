@@ -5,7 +5,7 @@ from authentication.models import profile
 
 
 @admin.register(profile)
-class profile_admin:
+class profile_admin(admin.ModelAdmin):
     list_display = ('user', 'name',
                     'flag', 'level',
                     'diamonds', 'coins',
