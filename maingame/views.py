@@ -7,11 +7,12 @@ from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import authentication_classes, permission_classes, api_view
 from rest_framework.permissions import IsAuthenticated
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 
 @api_view(["GET", "POST"])
 @csrf_protect
-@authentication_classes([TokenAuthentication,])
+@authentication_classes([JSONWebTokenAuthentication,])
 @permission_classes([IsAuthenticated,])
 def get_profile(request):
     return HttpResponse('ok', status=status.HTTP_200_OK)
