@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('won_number', models.IntegerField(default=0)),
                 ('diamonds', models.IntegerField(default=0)),
                 ('coins', models.IntegerField(default=0)),
-                ('friends', models.ManyToManyField(related_name='_profile_friends_+', to='maingame.profile')),
+                ('friends', models.ManyToManyField(related_name='_profile_friends_+', to='maingame.Profile')),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='profile', to=settings.AUTH_USER_MODEL)),
             ],
         ),

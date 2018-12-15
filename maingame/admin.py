@@ -1,16 +1,16 @@
 from django.contrib import admin
 
 # Register your models here.
-from maingame.models import profile, Question, Answer
+from maingame.models import Profile, Question, Answer
 
 
-@admin.register(profile)
+@admin.register(Profile)
 class profile_admin(admin.ModelAdmin):
     list_display = ('user', 'name',
                     'flag', 'level',
-                    'diamonds', 'coins',
+                    'gem', 'coins',
                     'game_number', 'won_number',
-                    'win_strike', 'picture')
+                    'win_strike', 'avatar')
     search_fields = ('user', 'name', )
 
 @admin.register(Question)

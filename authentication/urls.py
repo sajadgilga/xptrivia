@@ -1,12 +1,12 @@
+from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path
-from rest_framework_jwt.views import ObtainJSONWebToken
+from django.urls import path, include
 
-from authentication.serializers import CustomJWTSerializer
 from authentication.views import *
 
 urlpatterns = [
-    path('login/', Login_view.as_view()),
+    path('login/', Login_view.as_view(), name='login'),
+    path('socialLogin/', exchange_token),
     # path('logout/', logout_),
     # path('signup/', signup_),
 ]

@@ -6,6 +6,8 @@ from rest_framework_jwt.serializers import JSONWebTokenSerializer
 from django.utils.translation import ugettext as _
 from rest_framework_jwt.settings import api_settings
 
+from maingame.models import Profile
+
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
@@ -48,6 +50,8 @@ class CustomJWTSerializer(Serializer):
             }
             if all(credentials.values()):
                 user = authenticate(**credentials)
+                user_profile = Profile.objects.create(user=user_obj)
+                user_profile.save()
                 if user:
                     payload = jwt_payload_handler(user)
 
@@ -63,3 +67,5 @@ class CustomJWTSerializer(Serializer):
                 msg = _('Must include "{username_field}" and "password".')
                 msg = msg.format(username_field=self.required_field)
                 raise serializers.ValidationError(msg)
+
+

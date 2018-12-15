@@ -1,8 +1,9 @@
-from django.contrib import admin
 from django.urls import path
 
 from maingame.views import *
 
 urlpatterns = [
-    path('ex/', get_profile),
+    path('record/', user_record),
+    path('profile/', profile),
+    path('enter_battle/', enter_battle)
 ]
