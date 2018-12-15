@@ -33,9 +33,3 @@ class Answer(models.Model):
     answer = models.CharField(max_length=64)
     question = models.ForeignKey(to='Question', on_delete=models.CASCADE, related_name='answers')
     is_valid = models.BooleanField(default=False)
-
-
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_auth_token(sender, instance=None, created=False, **kwargs):
-    if created:
-        Token.objects.create(user=instance)

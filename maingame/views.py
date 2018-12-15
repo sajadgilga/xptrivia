@@ -62,5 +62,5 @@ def profile(request):
 @api_view(["GET"])
 @authentication_classes([JSONWebTokenAuthentication, ])
 @permission_classes([IsAuthenticated, ])
-def profile(request):
+def enter_battle(request):
     pass
