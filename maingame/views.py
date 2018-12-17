@@ -1,11 +1,8 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
-from django.shortcuts import render
 
 # Create your views here.
-from django.views.decorators.csrf import csrf_protect
 from rest_framework import status
-from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import authentication_classes, permission_classes, api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -19,12 +16,12 @@ from maingame.serializers import record_serializer, profile_serializer
 @authentication_classes([JSONWebTokenAuthentication, ])
 @permission_classes([IsAuthenticated, ])
 def user_record(request):
-    '''
+    """
     get user from request and returns its main record
 
     :param request:
     :return: serialized record in json format
-    '''
+    """
     try:
         user_profile = Profile.objects.get(user=request.user)
         serialized_record = record_serializer(user_profile)
@@ -41,12 +38,12 @@ def user_record(request):
 @authentication_classes([JSONWebTokenAuthentication, ])
 @permission_classes([IsAuthenticated, ])
 def profile(request):
-    '''
+    """
     gets user from request and returns its profile
 
     :param request:
     :return: serialized profile details in json format
-    '''
+    """
     try:
         user_profile = Profile.objects.get(user=request.user)
         serialized_profile = profile_serializer(user_profile)

@@ -59,9 +59,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'authentication',
     'game',
     'maingame',
+
     'rest_framework',
     'rest_framework.authtoken',
 
@@ -128,7 +130,6 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 5221440
 # the backend to use for sending emails
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = []
@@ -139,42 +140,16 @@ REST_FRAMEWORK = {
     ),
 
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        # 'rest_framework.authentication.TokenAuthentication',
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',  # django-oauth-toolkit >= 1.0.0
-        'rest_framework_social_oauth2.authentication.SocialAuthentication',
     ),
 }
-#
-# AUTHENTICATION_BACKENDS = (
-#
-#     'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
-#     'social_core.backends.google.GoogleOpenId',  # for Google authentication
-#     'social_core.backends.google.GoogleOAuth2',
-#
-#     # Facebook OAuth2
-#     'social_core.backends.facebook.FacebookAppOAuth2',
-#     'social_core.backends.facebook.FacebookOAuth2',
-#
-#     # django-rest-framework-social-oauth2
-#     'rest_framework_social_oauth2.backends.DjangoOAuth2',
-#
-#     # Django
-#     'django.contrib.auth.backends.ModelBackend',
-# )
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
-for key in ['GOOGLE_OAUTH2_KEY',
-            'GOOGLE_OAUTH2_SECRET',
-            'FACEBOOK_KEY',
-            'FACEBOOK_SECRET']:
-    # Use exec instead of eval here because we're not just trying to evaluate a dynamic value here;
-    # we're setting a module attribute whose name varies.
-    exec("SOCIAL_AUTH_{key} = os.environ.get('{key}')".format(key=key))
+
 SOCIAL_AUTH_PIPELINE = (
   'social_core.pipeline.social_auth.social_details',
   'social_core.pipeline.social_auth.social_uid',
@@ -199,12 +174,14 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email', 'profile']
 SOCIAL_AUTH_FACEBOOK_KEY = ''
 SOCIAL_AUTH_FACEBOOK_SECRET = ''
 
-# Define SOCIAL_AUTH_FACEBOOK_SCOPE to get extra permissions from facebook. Email is not sent by default, to get it, you must request the email permission:
+# Define SOCIAL_AUTH_FACEBOOK_SCOPE to get extra permissions from facebook. Email is not sent by default, to get it,
+# you must request the email permission:
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'id, name, email'
 }
 
+SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 

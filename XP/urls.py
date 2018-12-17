@@ -24,8 +24,6 @@ from authentication import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authentication.urls')),
-    # url(r'^auth/', include('rest_framework_social_oauth2.urls')),
-    # url(r'^auth/', include('social_django.urls', namespace='social')),  # <- Here
     path('game/', include('maingame.urls')),
     path('battle/', include('game.urls')),
 ]
