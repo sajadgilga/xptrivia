@@ -16,6 +16,7 @@ django-rest-framework-social-oauth2==1.1.0
 djangorestframework==3.9.0
 djangorestframework-jwt==1.11.0
 djangorestframework-oauth==1.1.0
+gunicorn==19.9.0
 httplib2==0.12.0
 idna==2.8
 Jinja2==2.10
