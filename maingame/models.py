@@ -9,7 +9,7 @@ from rest_framework.authtoken.models import Token
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(to=User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(to=User, on_delete=models.CASCADE)
     avatar = models.IntegerField(default=1)  # TODO: default and  upload_to
     name = models.CharField(max_length=64, default='')
     flag = models.CharField(default='Iran', max_length=16)
@@ -21,7 +21,7 @@ class Profile(models.Model):
     won_number = models.IntegerField(default=0)
     gem = models.IntegerField(default=0)
     coins = models.IntegerField(default=0)
-    friends = models.ManyToManyField(to='self', related_name='friends')
+    friends = models.ManyToManyField(to='self')
 
 
 class Question(models.Model):
