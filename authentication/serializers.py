@@ -27,7 +27,7 @@ class CustomJWTSerializer(Serializer):
     # generates a new username via incrementing id of the last user (note: there must be at least a user in db)
     def username_generator(self):
         last_user = User.objects.last()
-        return 'guest{}'.format(last_user + 1)
+        return 'guest{}'.format(last_user.pk + 1)
 
     # creates the new user object
     def create_guest_user(self):
