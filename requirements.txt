@@ -31,6 +31,7 @@ psycopg2==2.7.6.1
 psycopg2-binary==2.7.6.1
 pycparser==2.19
 PyJWT==1.7.0
+python-decouple==3.1
 python-social-auth==0.3.6
 python3-openid==3.1.0
 pytz==2018.7

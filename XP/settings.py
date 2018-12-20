@@ -74,6 +74,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -107,6 +108,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'XP.wsgi.application'
 
+# DATABASE_URL='postgres://xp_user:xp_db@localhost:5432/bcmlocaldb'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 # database settings
 DATABASES = {
