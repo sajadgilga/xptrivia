@@ -9,7 +9,7 @@ from rest_framework.authtoken.models import Token
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(to=User, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     # avatar = models.IntegerField(default=1)  # TODO: default and  upload_to
     # name = models.CharField(max_length=64, default='')
     # flag = models.CharField(default='Iran', max_length=16)
