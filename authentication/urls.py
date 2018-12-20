@@ -6,4 +6,5 @@ from authentication.views import *
 
 urlpatterns = [
     path('login/', Login_view.as_view(), name='login'),
+    path('hello/', handshake)
 ]

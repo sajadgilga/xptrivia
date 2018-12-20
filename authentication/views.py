@@ -9,6 +9,7 @@ from django.http import HttpResponse
 # from rest_auth.registration.views import SocialConnectView
 from requests import HTTPError
 from rest_framework import status, serializers
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -17,6 +18,7 @@ from social_django.utils import psa
 
 from authentication.serializers import CustomJWTSerializer, SocialSerializer
 from maingame.models import Profile
+
 
 class Login_view(APIView):
     """
@@ -146,7 +148,7 @@ class Login_view(APIView):
                     return Response({
                         'token': Login_view.jwt_encode_handler(payload),
                         'username': user.username
-                    },status=status.HTTP_200_OK)
+                    }, status=status.HTTP_200_OK)
                     # token, _ = Token.objects.get_or_create(user=user)
                     # return Response({'token': token.key})
                 else:
@@ -179,3 +181,9 @@ class Login_view(APIView):
         else:
             backend = login_type
             return Login_view.SocialAuth(request, backend)
+
+
+@api_view(['GET', ])
+@permission_classes([AllowAny, ])
+def handshake(request):
+    return HttpResponse('hello to you', status=status.HTTP_200_OK)
