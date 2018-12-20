@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 import datetime
 import os
+
+import dj_database_url
 from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -108,19 +110,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'XP.wsgi.application'
 
-# DATABASE_URL='postgres://xp_user:xp_db@localhost:5432/bcmlocaldb'
+DATABASE_URL='postgres://mdwwkytzrdhbcg:5167482d76272d4e4b376e874aa3b4f3cc28256160729bc140c47bab80fcaa21@ec2-54-247-125-116.eu-west-1.compute.amazonaws.com:5432/d7714kjfgrrnlb'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 # database settings
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'xp_db',
-        'USER': 'xp_user',  # username of database
-        'PASSWORD': '1234',  # password of database
-        'HOST': '127.0.0.1',  # set to localhost or '127.0.0.1' for tcp connection
-        'PORT': '',
-        'CONN_MAX_AGE': 0, # if set to 'None' it will create persistent connection with db
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'xp_db',
+    #     'USER': 'xp_user',  # username of database
+    #     'PASSWORD': '1234',  # password of database
+    #     'HOST': '127.0.0.1',  # set to localhost or '127.0.0.1' for tcp connection
+    #     'PORT': '',
+    #     'CONN_MAX_AGE': 0, # if set to 'None' it will create persistent connection with db
+    # }
+    'default':  dj_database_url.config(default=DATABASE_URL)
 }
 
 # maximum request body before raising exception
