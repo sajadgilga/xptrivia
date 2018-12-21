@@ -1,22 +1,35 @@
 from rest_framework import serializers
 
-from maingame.models import Profile
+from maingame.models import Profile, Battle_Group
 
 
 class record_serializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        # fields = ('user',)
-        fields = ('coins', 'gem', 'avatar', 'level')
+        fields = ('coins', 'gem', 'level')
+
+
+class friend_serializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username')
+
+    class Meta:
+        model = Profile
+        fields = ('username',)
 
 
 class profile_serializer(serializers.ModelSerializer):
+    friends = friend_serializer(many=True, read_only=True)
+
     class Meta:
         model = Profile
-        # fields = ('user',)
-        fields = ('avatar', 'flag',
+        fields = ('name', 'avatar',
                   'level', 'experience',
-                  'friends', 'coins',
-                  'gem', 'name',
+                  'flag', 'coins', 'gem',
                   'win_strike', 'average_score',
-                  'game_number', 'won_number')
+                  'game_number', 'won_number', 'friends',)
+
+
+class group_serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Battle_Group
+        fields = ('category', 'winner', 'loser')

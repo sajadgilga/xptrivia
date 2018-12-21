@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from maingame.models import Profile, Question, Answer
+from maingame.models import Profile, Question, Answer, Battle_Group
 
 
 @admin.register(Profile)
@@ -12,7 +12,8 @@ class profile_admin(admin.ModelAdmin):
                     'gem', 'coins',
                     'game_number', 'won_number',
                     'win_strike', 'avatar')
-    search_fields = ('user', 'name', )
+    search_fields = ('user', 'name',)
+
 
 @admin.register(Question)
 class Question_admin(admin.ModelAdmin):
@@ -21,6 +22,7 @@ class Question_admin(admin.ModelAdmin):
     search_fields = ('question_text',
                      'question_animation',)
 
+
 @admin.register(Answer)
 class Answer_admin(admin.ModelAdmin):
     # list_display = ('answer',)
@@ -28,3 +30,8 @@ class Answer_admin(admin.ModelAdmin):
                     'answer',)
     search_fields = ('question',
                      'answer',)
+
+
+@admin.register(Battle_Group)
+class Battle_Group_admin(admin.ModelAdmin):
+    list_display = ('winner', 'loser')
