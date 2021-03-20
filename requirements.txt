@@ -19,7 +19,7 @@ djangorestframework-oauth==1.1.0
 gunicorn==19.9.0
 httplib2==0.12.0
 idna==2.8
-Jinja2==2.10
+Jinja2==2.11.3
 livereload==2.6.0
 Markdown==3.0.1
 MarkupSafe==1.1.0
