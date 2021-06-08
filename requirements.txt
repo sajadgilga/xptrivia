@@ -26,7 +26,7 @@ MarkupSafe==1.1.0
 mkdocs==1.0.4
 oauth2==1.9.0.post1
 oauthlib==2.1.0
-Pillow==5.3.0
+Pillow==8.2.0
 psycopg2==2.7.6.1
 psycopg2-binary==2.7.6.1
 pycparser==2.19
